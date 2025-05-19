@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Price Alerts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📚 Book Price Tracker</h1>
+
+    <div class="nav-buttons">
+        <button onclick="scrollToSection('alerts')">Books Under £20</button>
+        <button onclick="scrollToSection('books')">All Books</button>
+    </div>
+
+    <hr>
+
+    <section id="alerts">
+        <h2>💸 Price Alert Books (≤ £20)</h2>
+        <div class="grid">
+            {% for book in alert_books %}
+            <div class="card alert-card">
+                <h3>{{ book.title }}</h3>
+                <p>Price: £{{ book.price }}</p>
+                <a href="{{ book.link }}" target="_blank">View Book</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="books">
+        <h2>📖 All Books</h2>
+        <div class="grid">
+            {% for book in books %}
+            <div class="card">
+                <h3>{{ book.title }}</h3>
+                <p>Price: £{{ book.price }}</p>
+                <a href="{{ book.link }}" target="_blank">View Book</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
